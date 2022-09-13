@@ -10,7 +10,7 @@ int main()
 
     for (int i = 0;; i++)
     {
-        if (i == 20) i = 19;
+       
         std::cout << "input number: ";
         std::cin >> input;
         if (input == -2) break;
@@ -25,6 +25,11 @@ int main()
             i--;
             input = db[i];
         }
+        if (i == 20 && input != -2 || input == -1)
+        {
+            shift_vector(db);
+            i = 19;
+        }
         db.push_back(input);
         
     }
@@ -35,5 +40,6 @@ void shift_vector(std::vector<int>& db)
     for (int i = 1; i < db.size(); i++)
     {
         db[i] = db[i - 1];
+        db.pop_back();
     }
 }
