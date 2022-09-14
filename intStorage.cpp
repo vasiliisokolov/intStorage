@@ -13,8 +13,11 @@ int main()
        
         std::cout << "input number: ";
         std::cin >> input;
-        if (input == -2) break;
-        if (input == -1)
+        if (input == -2)
+        {
+            break;
+        }
+        else if (input == -1)
         {
             std::cout << "output: ";
             for (int l = 0; l < db.size(); l++)
@@ -23,14 +26,20 @@ int main()
             }
             std::cout << "\n";
             i--;
-            input = db[i];
         }
-        if (i == 20 && input != -2 || input == -1)
+        else
         {
-            shift_vector(db);
-            i = 19;
+            if (i < 20)
+            {
+                db.push_back(input);
+            }
+            else
+            {
+                shift_vector(db);
+                db.push_back(input);
+            }
         }
-        db.push_back(input);
+        
         
     }
 }
@@ -39,7 +48,7 @@ void shift_vector(std::vector<int>& db)
 {
     for (int i = 1; i < db.size(); i++)
     {
-        db[i] = db[i - 1];
-        db.pop_back();
+        db[i-1] = db[i];
     }
+    db.pop_back();
 }
